@@ -1,3 +1,5 @@
+
+
 .barn-wrapper {
     display: flex;
     flex-direction: column;
@@ -5,61 +7,171 @@
     margin-top: 50px;
 }
 
-.barn-roof {
-    width: 200px;
-    height: 100px;
-    background-color: #5e4b3c;
-    clip-path: polygon(0 100%, 25% 0, 75% 0, 100% 100%);
+
+.barn-roof-outer {
+    width: 320px;
+    height: 110px;
+    background-color: #4b3c2f; /* donkerbruin */
+    clip-path: polygon(0 100%, 20% 0, 80% 0, 100% 100%);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
 }
 
+.barn-roof-inner {
+    width: 280px;
+    height: 100px;
+    background-color: #c53030; /* rood */
+    clip-path: polygon(0 100%, 20% 0, 80% 0, 100% 100%);
+    position: absolute;
+    top: 10px;
+}
+
+
+.barn-windows {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    margin-top: 25px;
+}
+
+.barn-window {
+    width: 60px;
+    height: 60px;
+    background-color: #3b2f2f;
+    position: relative;
+    border: 4px solid white;
+    box-sizing: border-box;
+    margin: 10px;
+}
+
+.window-frame-1 {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 100%;
+    background-color: white;
+}
+
+
 .barn-base {
-    width: 200px;
-    height: 180px;
-    background-color: #c53030; /* donkerrood */
+    width: 300px;
+    height: 100px;
+    background-color: #c53030;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+.barn-door-frame {
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
 .door-rail {
+    position: relative;
     width: 100%;
     height: 8px;
     background-color: white;
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
+
 .barn-doors {
+    position: relative;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     margin-top: auto;
-    padding: 10px;
+    background-color: black;
+
+}
+
+.door-container {
+    width: 60px;
+    height: 80px;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    position: relative;
 }
 
 .barn-door {
-    width: 60px;
-    height: 80px;
+    width: 100%;
+    height: 100%;
     background-color: #3b2f2f;
     position: relative;
     border: 4px solid white;
     box-sizing: border-box;
+    margin: 1px;
+    transition: transform 1s ease-in-out;
+}
+
+.left-door {
+    transform-origin: left;
+}
+
+.right-door {
+    transform-origin: right;
 }
 
 .barn-door-cross {
     position: absolute;
-    width: 100%;
+    width: 95px;
     height: 4px;
     background-color: white;
     top: 50%;
-    left: 0;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(55deg); /* en -55deg bij de andere */
     transform-origin: center;
+
 }
 
 .cross1 {
-    transform: rotate(45deg);
+    transform: translate(-50%, -50%) rotate(55deg);
 }
 
 .cross2 {
-    transform: rotate(-45deg);
+    transform: translate(-50%, -50%) rotate(-55deg);
+}
+
+
+.barn-doors:hover .left-door {
+    transform: rotateY(-110deg);
+}
+
+.barn-doors:hover .right-door {
+    transform: rotateY(110deg);
+}
+
+.door-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease-in-out;
+    background: white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    color: #3b2f2f;
+    font-weight: bold;
+    text-decoration: none;
+    z-index: 10;
+}
+
+.barn-doors:hover .door-button {
+    opacity: 1;
+    pointer-events: auto;
 }
